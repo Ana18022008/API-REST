@@ -24,6 +24,14 @@ public class AlunoService {
        return alunoRepository.cadastrar(aluno);
     }
 
+    public void deletar(int id) throws SQLException{
+        alunoRepository.deletar(id);
+    }
+
+    public Aluno atualizar (Aluno aluno, int id) throws SQLException{
+         return alunoRepository.atualizar(aluno, id);
+    }
+
 }
 
 

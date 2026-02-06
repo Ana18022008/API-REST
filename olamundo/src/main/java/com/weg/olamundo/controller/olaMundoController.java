@@ -31,9 +31,18 @@ public class olaMundoController {
 
     @PostMapping
     public Aluno postAluno( @RequestBody Aluno aluno) throws SQLException{
-
            return alunoService.cadastrar(aluno);
 
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteAluno(@PathVariable int id) throws SQLException{
+        alunoService.deletar(id);
+    }
+
+    @PutMapping("/{id}")
+    public Aluno putAluno(@RequestBody Aluno aluno, @PathVariable int id) throws SQLException{
+         return alunoService.atualizar(aluno, id);
     }
 
 

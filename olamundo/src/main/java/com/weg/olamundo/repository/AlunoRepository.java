@@ -62,4 +62,39 @@ public class AlunoRepository {
     return aluno;
     }
 
+    public void deletar(int id) throws SQLException{
+        String query = """
+                DELETE FROM aluno
+                where id = ?
+                """;
+
+        try(Connection conn = Conexao.conectar();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
+
+    }
+
+
+    public Aluno atualizar(Aluno aluno, int id) throws SQLException{
+        String query = """
+                UPDATE aluno
+                SET nome = ?,
+                turma = ?,
+                sala = ?
+                where id = ?
+                """;
+
+        try(Connection conn = Conexao.conectar();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setString(1, aluno.getNome());
+            stmt.setInt(2, aluno.getTurma());
+            stmt.setInt(3, aluno.getSala());
+            stmt.setInt(4, id);
+            stmt.executeUpdate();
+        }
+        return aluno;
+    }
 }
