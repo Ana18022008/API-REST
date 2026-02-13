@@ -30,20 +30,34 @@ public class olaMundoController {
     }
 
     @PostMapping
-    public Aluno postAluno( @RequestBody Aluno aluno) throws SQLException{
-           return alunoService.cadastrar(aluno);
+    public Aluno postAluno( @RequestBody Aluno aluno){
 
+        try {
+            return alunoService.cadastrar(aluno);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+            return null;
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAluno(@PathVariable int id) throws SQLException{
+    public void deleteAluno(@PathVariable int id){
+        try{
         alunoService.deletar(id);
+    }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @PutMapping("/{id}")
-    public Aluno putAluno(@RequestBody Aluno aluno, @PathVariable int id) throws SQLException{
-         return alunoService.atualizar(aluno, id);
-    }
+    public Aluno putAluno(@RequestBody Aluno aluno, @PathVariable int id){
 
+        try {
+            return alunoService.atualizar(aluno, id);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
